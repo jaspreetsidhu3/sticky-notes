@@ -28,27 +28,38 @@ public class MainActivity extends AppCompatActivity {
         edtNote = findViewById(R.id.edtNote);
         btnSave = findViewById(R.id.save);
         data = new Data(getApplicationContext());
+        setNote();
+    }
 
+    public void setNote() {
+        String noteTxt = data.getNotes();
+        if (!noteTxt.isEmpty()) {
+            edtNote.setText(noteTxt);
+        }
+    }
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(edtNote.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), "Please enter note", Toast.LENGTH_LONG).show();
-                }
-                try {
-                    data.setNotes(edtNote.getText().toString());
-                    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
-                    RemoteViews remoteViews = new RemoteViews(getApplicationContext().getPackageName(), R.layout.widget_layout);
-                    ComponentName widget = new ComponentName(getApplicationContext(), AppWidget.class);
-                    remoteViews.setTextViewText(R.id.idTVWidget, edtNote.getText().toString());
-                    appWidgetManager.updateAppWidget(widget, remoteViews);
-                    Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_LONG).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+    public void btnSave(View view) {
+        String noteTxt = edtNote.getText().toString();
+        if (TextUtils.isEmpty(noteTxt)) {
+            Toast.makeText(getApplicationContext(), "Please enter note", Toast.LENGTH_LONG).show();
+        }
+        try {
+            data.setNotes(noteTxt);
+            updateWidget();
+            Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateWidget() {
+        if(!data.getNotes().isEmpty()){
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+            RemoteViews remoteViews = new RemoteViews(getApplicationContext().getPackageName(), R.layout.widget_layout);
+            ComponentName widget = new ComponentName(getApplicationContext(), AppWidget.class);
+            remoteViews.setTextViewText(R.id.idTVWidget, data.getNotes());
+            appWidgetManager.updateAppWidget(widget, remoteViews);
+        }
     }
 }
 

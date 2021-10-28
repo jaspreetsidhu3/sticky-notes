@@ -8,19 +8,20 @@
     tools:context=".MainActivity">
 
     <EditText
+        android:id="@+id/edtNote"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:hint="Enter your note"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/edtNote"
-        android:padding="12dp"
         android:gravity="top|start"
+        android:hint="Enter your note"
+        android:padding="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="btnSave"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

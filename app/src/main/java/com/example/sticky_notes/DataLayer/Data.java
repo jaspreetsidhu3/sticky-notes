@@ -37,7 +37,7 @@ public class Data {
     public void setNotes(String note) throws IOException {
         FileOutputStream fos = null;
         try {
-            fos = _context.getApplicationContext().openFileOutput("notes.txt", Context.MODE_APPEND);
+            fos = _context.getApplicationContext().openFileOutput("notes.txt", Context.MODE_PRIVATE);
             fos.write(note.getBytes());
         } catch (Exception ex) {
             ex.printStackTrace();
