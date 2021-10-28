@@ -9,10 +9,12 @@
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
         android:hint="Enter your note"
         app:layout_constraintLeft_toLeftOf="parent"
         android:id="@+id/edtNote"
+        android:padding="12dp"
+        android:gravity="top|start"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

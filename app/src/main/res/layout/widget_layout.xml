@@ -19,7 +19,7 @@
         android:id="@+id/idTVWidget"
         android:text="Text"
         android:textSize="20sp"
-        android:textColor="@color/font_color"
+        android:textColor="@color/white"
         ></TextView>
 </LinearLayout>
 </FrameLayout>
