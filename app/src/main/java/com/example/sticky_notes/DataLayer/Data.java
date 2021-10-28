@@ -34,7 +34,7 @@ public class Data {
         return stringBuilder.toString();
     }
 
-    public void setNotes(String note) throws IOException {
+    public void setNotes(String note) {
         FileOutputStream fos = null;
         try {
             fos = _context.getApplicationContext().openFileOutput("notes.txt", Context.MODE_PRIVATE);
@@ -43,7 +43,29 @@ public class Data {
             ex.printStackTrace();
         } finally {
             if (fos != null) {
-                fos.close();
+                try {
+                    fos.close();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void deleteNotes() {
+        FileOutputStream fos = null;
+        try {
+            fos = _context.getApplicationContext().openFileOutput("notes.txt", Context.MODE_PRIVATE);
+            fos.write("".getBytes());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         }
     }
