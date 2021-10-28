@@ -1,0 +1,2 @@
+rootProject.name = "sticky_notes"
+include ':app'
